@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+group = 'org.salamun'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '5.4.0'
+    implementation group: 'org.json', name: 'json', version: '20240303'
+    testImplementation 'io.qameta.allure:allure-testng:2.11.2' // Pastikan versi sesuai dan gunakan testImplementation
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+    // Alternatif: Gunakan Gson jika lebih suka
+    implementation 'com.google.code.gson:gson:2.10.1'
+}
+
+test {
+    useTestNG()
+
+
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+////    Configuration for Allure Report
+//tasks.register('generateAllureReport') {
+//    doLast {
+//        // Generates an Allure Report after tests are run
+//        exec {
+//            commandLine 'C:\\Users\\Adirasa Salamun\\scoop\\apps\\allure\\current\\bin\\allure.bat', '--version'
+//            commandLine 'C:\\Users\\Adirasa Salamun\\scoop\\apps\\allure\\current\\bin\\allure.bat', 'generate', '--clean'
+//        }
+//    }
+//}

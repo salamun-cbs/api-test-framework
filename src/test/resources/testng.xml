@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Reqres Automation API">
+    <!-- Define a single test with multiple classes -->
+    <test name="Test Get, Post, Put, Patch, Delete and Validate">
+        <parameter name="browser" value="chrome"/>
+
+        <!-- Specify the package or classes to be run -->
+        <classes>
+            <class name="api.auto.test.CreateUserTest"/>
+            <class name="api.auto.test.GetUserTest"/>
+            <class name="api.auto.test.UpdateUserTest"/>
+            <class name="api.auto.test.DeleteUserTest"/>
+            <class name="api.auto.test.NegativeTest"/>
+            <class name="api.auto.test.EdgeCaseTest"/>
+        </classes>
+    </test>
+</suite>
