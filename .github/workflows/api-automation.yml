@@ -34,21 +34,22 @@ jobs:
     - name: Execute Test
       run: ./gradlew test
 
-    - name: Allure report
-      uses: afiore/action-allure-report@v0.1.0
-      with:
-        # Allure test result data dir
-        results-dir: allure-results
-        # Allure report target dir
-        report-dir: allure-report
-         
+    - name: Install Allure
+      run: |
+          sudo apt-add-repository ppa:qameta/allure -y
+          sudo apt-get update
+          sudo apt-get install allure -y
+          allure --version
+          
+    - name: Generate Allure Report
+      run: allure generate build/allure-results -o allure-report --clean    
 
     # Archive Test Result
     - name: Archive Test Result
       uses: actions/upload-artifact@v4.6.1
       if: always()
       with:
-        name: Cucumber Report
+        name: allure Report
         path: allure-report
 
     # Deploy to Github Pages
